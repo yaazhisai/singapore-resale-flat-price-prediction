@@ -136,7 +136,7 @@ elif option=='PREDICTION':
                 ''', unsafe_allow_html=True)
 
             if submit_bt:
-                with open(r'C:\Users\yaazhisai\Desktop\singapore resale\DecisionTreeRegressor_pkl','rb') as f:
+                with open(r'DecisionTreeRegressor_pkl','rb') as f:
                     model=pickle.load(f)
                     print(town_en,flat_type_en,flat_model_en,storey_en,floor_area_sqm,rem_lease_year)
                     data = np.array([town_en, 
