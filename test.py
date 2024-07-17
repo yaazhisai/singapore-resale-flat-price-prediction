@@ -27,7 +27,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 df_new1=pd.read_csv('df_clean.csv')
-df_r=pd.read_csv('df_raw1.csv')
+
 
 with st.sidebar:
    option=st.selectbox("SELECT ONE:",("ANALYSIS","PREDICTION"),index=None,placeholder=" ")
