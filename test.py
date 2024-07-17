@@ -9,22 +9,22 @@ import plotly.express as pt
 
 
 st.title("SINGAPORE RESALE FLAT PRICE PREDICTION")
-st.markdown("""
-<style>
-    [data-testid=stSidebar] {
-        background-color:black;
-    }
-</style>
-""", unsafe_allow_html=True)
+# st.markdown("""
+# <style>
+#     [data-testid=stSidebar] {
+#         background-color:black;
+#     }
+# </style>
+# """, unsafe_allow_html=True)
 
-st.markdown("""
-	<style>
-	.stSelectbox:first-of-type > div[data-baseweb="select"] > div {
-	      background-color:steelblue;
-    	      padding: 10px;
-	}
-	</style>
-""", unsafe_allow_html=True)
+# st.markdown("""
+# 	<style>
+# 	.stSelectbox:first-of-type > div[data-baseweb="select"] > div {
+# 	      background-color:steelblue;
+#     	      padding: 10px;
+# 	}
+# 	</style>
+# """, unsafe_allow_html=True)
 
 df_new1=pd.read_csv('df_clean.csv')
 
@@ -132,13 +132,13 @@ elif option=='PREDICTION':
             st.write(' ')
             st.write('  ')
             submit_bt = st.form_submit_button(label='Predict resale Price',use_container_width=150)
-            st.markdown('''
-                ''', unsafe_allow_html=True)
+            # st.markdown('''
+            #     ''', unsafe_allow_html=True)
 
             if submit_bt:
                 with open(r'DecisionTreeRegressor_pkl','rb') as f:
                     model=pickle.load(f)
-                    print(town_en,flat_type_en,flat_model_en,storey_en,floor_area_sqm,rem_lease_year)
+                    # print(town_en,flat_type_en,flat_model_en,storey_en,floor_area_sqm,rem_lease_year)
                     data = np.array([town_en, 
                                     storey_en,
                                     np.log(float(floor_area_sqm)), 
