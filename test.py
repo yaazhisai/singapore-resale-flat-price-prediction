@@ -9,22 +9,22 @@ import plotly.express as pt
 
 
 st.title("SINGAPORE RESALE FLAT PRICE PREDICTION")
-# st.markdown("""
-# <style>
-#     [data-testid=stSidebar] {
-#         background-color:black;
-#     }
-# </style>
-# """, unsafe_allow_html=True)
+st.markdown("""
+<style>
+    [data-testid=stSidebar] {
+        background-color:black;
+    }
+</style>
+""", unsafe_allow_html=True)
 
-# st.markdown("""
-# 	<style>
-# 	.stSelectbox:first-of-type > div[data-baseweb="select"] > div {
-# 	      background-color:steelblue;
-#     	      padding: 10px;
-# 	}
-# 	</style>
-# """, unsafe_allow_html=True)
+st.markdown("""
+	<style>
+	.stSelectbox:first-of-type > div[data-baseweb="select"] > div {
+	      background-color:steelblue;
+    	      padding: 10px;
+	}
+	</style>
+""", unsafe_allow_html=True)
 
 df_new1=pd.read_csv('df_clean.csv')
 
@@ -92,6 +92,12 @@ if option=="ANALYSIS":
     plt.xticks(rotation=90)
     st.pyplot(f5)
 
+    st.write("TOWN VS RESALE VS FLATTYPE ANALYSIS")
+    fig=sns.relplot(df_new1, x="town", y="resale_price", hue="flat_type")
+    plt.xticks(rotation=90)
+    st.pyplot(fig)
+
+
 
 
 elif option=='PREDICTION':
@@ -104,7 +110,6 @@ elif option=='PREDICTION':
         sr=df_new1['storey_range'].unique()
         
         floor_area_sqm=df_new1['floor_area_sqm'].unique()
-        lease_commence_date=df_new1['lease_commence_date'].unique()
         salemonth=df_new1['salemonth'].unique()
         saleyear=df_new1['saleyear'].unique()
         rem_lease_year=df_new1['rem_lease_year'].unique()
@@ -119,26 +124,25 @@ elif option=='PREDICTION':
             storey_range1=st.selectbox('FLOOR RANGE',sr,help='Estimated range of floors the unit sold was located on')
             storey_en=df_new1[df_new1['storey_range']==storey_range1]['storey_en'].iloc[0]
             floor_area_sqm=st.selectbox('FLOOR AREA',floor_area_sqm,help='Total interior space within the unit, measured in square meters')
-            flat_model1=st.selectbox('FLAT MODEL',fm,help='Classification of units by generation of which the flat was made, ranging from New Generation, DBSS, Improved, Apartment')
-            flat_model_en=df_new1[df_new1['flat_model']==flat_model1]['flat_model_en'].iloc[0]
-
-
+            
+            
         with col3:
             st.write('  ')
-            lease_commence_date1=st.selectbox('LEASE START YEAR',lease_commence_date,help='Starting point of a lease agreement, marking the beginning of the lease term during which the tenant has the right to use and occupy the leased property')
+            flat_model1=st.selectbox('FLAT MODEL',fm,help='Classification of units by generation of which the flat was made, ranging from New Generation, DBSS, Improved, Apartment')
+            flat_model_en=df_new1[df_new1['flat_model']==flat_model1]['flat_model_en'].iloc[0]
             salemonth1=st.selectbox('MONTH OF SALE',salemonth,help='The month at which sale has happened')
             saleyear1=st.selectbox('YEAR OF SALE',saleyear,help='The year at which sale has happened')
             rem_lease_year=st.selectbox('REMAINLING LEASE PERIOD',rem_lease_year,help='Remaining number of years the buyer can use this property')
             st.write(' ')
             st.write('  ')
             submit_bt = st.form_submit_button(label='Predict resale Price',use_container_width=150)
-            # st.markdown('''
-            #     ''', unsafe_allow_html=True)
+            st.markdown('''
+                ''', unsafe_allow_html=True)
 
             if submit_bt:
-                with open(r'DecisionTreeRegressor_pkl','rb') as f:
+                with open(r'C:\Users\yaazhisai\Desktop\singapore resale\DecisionTreeRegressor_pkl','rb') as f:
                     model=pickle.load(f)
-                    # print(town_en,flat_type_en,flat_model_en,storey_en,floor_area_sqm,rem_lease_year)
+                    print(town_en,flat_type_en,flat_model_en,storey_en,floor_area_sqm,rem_lease_year)
                     data = np.array([town_en, 
                                     storey_en,
                                     np.log(float(floor_area_sqm)), 
@@ -146,7 +150,6 @@ elif option=='PREDICTION':
                                     flat_type_en, 
                                     saleyear1,
                                     salemonth1,
-                                    lease_commence_date1,
                                     np.log(float(rem_lease_year))]).reshape(1,-1)
                     
                     #print(data)
@@ -155,6 +158,7 @@ elif option=='PREDICTION':
                     #inverse transformation 
                     price_bfr = np.exp(y_pred[0])
                     price_aft = np.round(price_bfr,2)
+                    #print(price_bfr,price_aft)
 
                     st.write(f"THE PREDICTED RESALE PRICE IS:$ {price_aft} ")
 
