@@ -156,7 +156,7 @@ elif option=='PREDICTION':
                 ''', unsafe_allow_html=True)
 
         if submit_bt:
-            with open(r'C:\Users\yaazhisai\Desktop\singapore resale\linearreg_pkl','rb') as f:
+            with open(r'\linearreg_pkl','rb') as f:
                 model=pickle.load(f)
 
                 data = np.array([[ town_dict[town], 
