@@ -1,4 +1,4 @@
-python==3.12.1
+ipython==8.12.3
 streamlit
 numpy
 scikit-learn
