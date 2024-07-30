@@ -17,14 +17,14 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-	<style>
-	.stSelectbox:first-of-type > div[data-baseweb="select"] > div {
-	      background-color:steelblue;
-    	      padding: 10px;
-	}
-	</style>
-""", unsafe_allow_html=True)
+# st.markdown("""
+# 	<style>
+# 	.stSelectbox:first-of-type > div[data-baseweb="select"] > div {
+# 	      background-color:steelblue;
+#     	      padding: 10px;
+# 	}
+# 	</style>
+# """, unsafe_allow_html=True)
 
 if 'df_new1' not in st.session_state.keys():
     df_new1=pd.read_csv('df_clean.csv')
