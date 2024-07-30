@@ -161,7 +161,7 @@ elif option=='PREDICTION':
 
         if submit_bt:
             if 'model' not in st.session_state.keys():
-                with open(r'C:\Users\yaazhisai\Desktop\singapore resale\linearreg_pkl','rb') as f:
+                with open(r'linearreg_pkl','rb') as f:
                     model=pickle.load(f)
                     st.session_state['model']=model
             else:
