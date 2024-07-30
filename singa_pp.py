@@ -48,7 +48,7 @@ if option=="ANALYSIS":
     # Line plot
     st.write("FLAT MODEL AND RESALE PRICE ANALYSIS")
     f1=plt.figure(figsize=(15,8))
-    ss1=df_new1.groupby(['flat_model'])[['resale_price']].mean()
+    ss1=df_new1.groupby(['flat_model'], observed=True)[['resale_price']].mean()
     ss1.reset_index(inplace= True)
     sns.lineplot(x='flat_model', y='resale_price', data=df_new1,color='black')
     plt.title('Line Plot: Flat Model vs Resale price')
@@ -58,7 +58,7 @@ if option=="ANALYSIS":
     
     st.write("FLAT TYPE AND RESALE PRICE ANALYSIS")
     f2 =plt.figure(figsize=(15,8))
-    ss2=df_new1.groupby(['flat_type'])[['resale_price']].mean()
+    ss2=df_new1.groupby(['flat_type'], observed=True)[['resale_price']].mean()
     ss2.reset_index(inplace= True)
     sns.barplot(ss2, x="flat_type", y="resale_price",color='green')
     #plt.title('Scatter Plot: Flat Type vs Resale price')
@@ -70,7 +70,7 @@ if option=="ANALYSIS":
     # sns.set_theme(rc={'figure.figsize':(11.7,8.27)})
     st.write("REMAINING LEASE YEAR AND RESALE PRICE ANALYSIS")
     f3=plt.figure(figsize=(15, 8))
-    ss3=df_new1.groupby(['rem_lease_year'])[['resale_price']].mean()
+    ss3=df_new1.groupby(['rem_lease_year'], observed=True)[['resale_price']].mean()
     ss3.reset_index(inplace= True)
     sns.barplot(data=ss3,x='rem_lease_year',y='resale_price',color='yellow')
     plt.title('BAR PLOT: Remaining lease year vs Resale price')
@@ -80,7 +80,7 @@ if option=="ANALYSIS":
     # Line plot
     st.write("AREA AND RESALE PRICE ANALYSIS")
     f4=plt.figure(figsize=(15,8))
-    ss4=df_new1.groupby(['floor_area_sqm'])[['resale_price']].mean()
+    ss4=df_new1.groupby(['floor_area_sqm'], observed=True)[['resale_price']].mean()
     ss4.reset_index(inplace= True)
     sns.lineplot(x='floor_area_sqm', y='resale_price', data=ss4,color='green')
     plt.title('Line Plot: Floor area(sqm) vs Resale price')
@@ -89,7 +89,7 @@ if option=="ANALYSIS":
     
     st.write("TOWN AND RESALE PRICE ANALYSIS")
     f5=plt.figure(figsize=(15, 8))
-    ss=df_new1.groupby(['town'])[['resale_price']].mean()
+    ss=df_new1.groupby(['town'], observed=True)[['resale_price']].mean()
     ss.reset_index(inplace= True)
     sns.barplot(data=ss, x="town", y="resale_price", color="purple")
     plt.xticks(rotation=90)
