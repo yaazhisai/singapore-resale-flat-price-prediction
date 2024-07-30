@@ -1,10 +1,10 @@
 import streamlit as st
 import pickle 
-#import numpy as np
+import numpy as np
 import pandas as pd
-#import seaborn as sns
-#import matplotlib.pyplot as plt
-#import plotly.express as pt
+import seaborn as sns
+import matplotlib.pyplot as plt
+import plotly.express as pt
 
 
 
